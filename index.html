@@ -1,0 +1,586 @@
+<html>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/presentation-style.css" />
+    <script type="text/javascript" src="lib/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+    <script type="text/javascript" src="lib/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+    <link type="text/css" rel="stylesheet" href="lib/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+    <link type="text/css" rel="stylesheet" href="lib/google-code-prettify/prettify.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+<body class="impress-not-supported" onload="prettyPrint()">
+<div style="position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);">
+    <img id="x_block" style="margin-left:auto;margin-right:auto;display:none;" src="images/megaman/Running_bare.gif">
+</div>
+<div id="impress">
+    <div id="intro" class="step slide hide_x metal linear" data-rotate-z="-90">
+        <div style="text-align:center">
+            <h1>Becoming a Puppet platformer</h1>
+        <hr>
+            <h2>Upgrading and using your tools is the key</h2>
+        <img height="350px" src="images/megaman/bare_spec.png" />
+        </div>
+        <span style="position:absolute;bottom:20;right:20">
+        <small>By: Josh Souza</small>
+        </span>
+        <div class="notes">
+            Ensure that things are full screen, and on the correct screens.
+        </div>
+    </div>
+    <div class="step slide show_x x_running">
+        <h2>Systems coming online</h2>
+        <div style="text-align:center;">Thank you for being here</div>
+        <br>
+        <iframe id="x_video" width="778" height="465" src="https://www.youtube.com/embed/nRZBQwlXtog?rel=0&start=17&end=70&autoplay=0&controls=0&showinfo=0&disablekb=1" frameborder="0" allowfullscreen></iframe>
+        <script>
+            a=document.getElementById('x_video')
+            console.log(a);
+        </script>
+        <!--
+        <object width="425" height="344"><param name="movie" value="http://swf.tubechop.com/tubechop.swf?vurl=nRZBQwlXtog&start=17.06&end=70.64&cid=5594259"></param><embed src="http://swf.tubechop.com/tubechop.swf?vurl=nRZBQwlXtog&start=17.06&end=70.64&cid=5594259" type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed></object>
+    -->
+        <!--
+        <ul>
+            <li>HTML 5 enthusiast</li>
+            <li>Developer (So many languages)</li>
+            <li>Powerpoint hater</li>
+        </ul>
+        <div style="float:left;text-align:center;padding:30px"><img src="images/Josh.png" width="200px"></div>
+        <div style="float:left;padding-top:60px;width:50%">
+            <ul>
+                <li>development@pureinsomnia.com</li>
+                <li>GitHub: ShadowZero3000</li>
+            </ul>
+        </div>
+    -->
+        <div class="notes">
+            Thank you for being here.<br>
+            I know there's quite a few interesting sessions happening right now,
+            and I'd like to say thank you for coming to my session.<br><br>
+
+            I want to show you all how to excel at the platform that is Puppet.<br>
+            Let's analyze the critical components that make a successful platformer,
+            like my friend Megaman here.
+        </div>
+    </div>
+    <div class="step slide show_x x_running" >
+        <h2>Who will this help?</h2>
+        <ul>
+            <li>Intermediate Puppet users</li>
+            <li>Familiar with:
+                <ul>
+                    <li>R10k - Puppetfile directory environments</li>
+                    <li>Hiera</li>
+                    <li>Roles/profiles</li>
+                </ul>
+            </li>
+            <li>Beneficial to be familiar with:
+                <ul>
+                    <li>Git webhooks</li>
+                    <li>Aptly</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="corner top_right">
+        <img class="animated" src="images/megaman/Dr_Light_in_out.gif" height="188" width="100" />
+    </div>
+
+        <div class="notes">
+            Like the first stage in Megaman X, I'm not going to cover the basics of how to platform. If you aren't familiar with R10k, Hiera, or the concept of roles and profiles, it's going to be tough to follow along.<br><br>
+            Meanwhile, if you've toyed with Git webhooks or Aptly in the past, you've got an edge here.
+        </div>
+    </div>
+    <div class="step slide show_x x_running" data-rotate-x="90" keep-gap="true">
+        <h2>What is the problem?</h2>
+        <div class="corner top_right"><img height="122" width="124" src="images/megaman/sigma.png" /></div>
+        <ul>
+            <li>
+                Small team vs. large enterprise
+            </li>
+            <li>
+                Some users need more stability than others
+            </li>
+            <li>
+                Teams need to own their configs
+            </li>
+        </ul>
+        <div class="notes">
+            <h2>What is the problem?</h2>
+            <ul>
+                <li>Often a small team needs to support the puppet infrastructure of a large enterprise
+                    <ul>
+                        <li>Must be agile/responsive to changing needs</li>
+                        <li>Must be automated and scalable, yet highly tailored</li>
+                    </ul>
+                </li>
+                <li>Not all users of a puppet infrastructure are flexible
+                    <ul>
+                        <li>May not be using continuous integration</li>
+                        <li>Must be able to depend on the platform being stable</li>
+                    </ul>
+                </li>
+                <li>Multiple existing teams need ease of configuration for their roles
+                    <ul>
+                        <li>Standardized roles/profiles model can't scale in this way</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="step slide show_x x_running">
+        <h2>What is the end goal?</h2>
+        <div class="corner top_right"><img height="188" width="100" src="images/megaman/Dr_Light_talking.gif" /></div>
+        <ul>
+            <li>
+                Regular releases that remain stable after being published
+            </li>
+            <li>
+                We can support as many teams as you can throw at us
+            </li>
+            <li>
+                Our code is flexible enough to handle varying needs and changing directions
+            </li>
+            <li>
+                Even our automation is automated
+            </li>
+            <li>Constraints:</li>
+            <ul>
+                <li>
+                    Everyone has to deal with the same set of modules
+                </li>
+                <li>
+                    Software (packages) must install reliably
+                </li>
+            </ul>
+        </ul>
+        <div class="notes">
+            How do we know when we've won?
+            <ul>
+                <li>Regular releases that remain stable after being published
+                    <ul>
+                        <li>If it worked once, it always will on that release</li>
+                    </ul>
+                </li>
+                <li>Support multiple teams
+                    <ul>
+                        <li>Support defaults that vary by business unit</li>
+                        <li>Allow for role/profile usage at scale</li>
+                    </ul>
+                </li>
+                <li>Flexibility
+                    <ul>
+                        <li>New modules, different modules, changes to defaults are easy</li>
+                    </ul>
+                </li>
+                <li>Automatability
+                    <ul>
+                        <li>Fits into a continuous integration model for you and your teams</li>
+                    </ul>
+                </li>
+                <li>What are the constraints?</li>
+                <ul>
+                    <li>Teams must select from a specific list of modules made available to everyone
+                        <ul>
+                            <li>Supporting teams using four different apache modules is a nightmare</li>
+                            <li>Decide on a module for a particular functionality. If it no longer fits the bill, change it for a later release, but don't break the old release.</li>
+                        </ul>
+                    </li>
+                    <li>Software (packages) must install reliably
+                        <ul>
+                            <li>package{'xyz': ensure => present} should always install the same version</li>
+                            <li>Many things can break from release to release of packages that requires tweaks of puppet modules. This leads to "it worked yesterday" syndrome</li>
+                        </ul>
+                    </li>
+                </ul>
+            </ul>
+
+        </div>
+    </div>
+    <div class="step slide show_x x_upgrade_1" data-rotate-x="90" keep-gap="true">
+        <h2>Upgrade: Releases (Environments)</h2>
+        <div class="corner top_right"><img class="animated" height="188" width="100" src="images/megaman/upgrade_legs_no_loop.gif" /></div>
+        <ul>
+            <li>r10k - Directory environments made easy</li>
+            <li>Versioned releases</li>
+            <li>Keep releases stable, encourage utilizing new releases for bugfixes/feature improvements
+            </li>
+            <li>Small set of facts provide insight
+                <ul>
+                    <li>::server_environment</li>
+                    <li>::server_role</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="notes">
+            <ul>
+                <li>r10k - If you're not already using it, start today. Literally.
+                    This makes it beyond simple to handle your environments</li>
+                <li>Versioned releases
+                    <ul>
+                        <li>Separate Puppetfile branch for each release</li>
+                        <li>The term "release" is the Puppet "environment"</li>
+                    </ul>
+                </li>
+                <li>Keep releases stable, encourage utilizing new releases for bugfixes/feature improvements
+                    <ul>
+                        <li>Minimal backporting of fixes to minimize maintenance needs</li>
+                        <li>Have a ‘development' or otherwise release that is unstable for testing</li>
+                    </ul>
+                </li>
+                <li>Small set of facts provide insight
+                    <ul>
+                        <li>::server_environment - Actual dev/stg/prd environment</li>
+                        <li>::server_role - Definable by teams to isolate server types</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="step slide show_x x_upgrade_2">
+        <h2>Upgrade: Hiera</h2>
+        <div class="corner top_right"><img class="animated" height="188" width="100" src="images/megaman/upgrade_chest_no_loop.gif" /></div>
+        <ul>
+            <li>Separate tiers of logic</li>
+            <li>Make your Hiera configs robust</li>
+            <ul>
+                <li>Hiera-eyaml</li>
+                <li>Hiera-file</li>
+            </ul>
+        </ul>
+        <div class="notes">
+            The second upgrade you need to win: Hiera<br>
+            If you don't know about Hiera yet, go learn about it while you're here
+            <ul>
+                <li>Separate tiers of logic</li>
+                <ul>
+                    <li>Global - Infrastructure defaults. I.E. what repository server to use based on geographic location</li>
+                    <li>Team - Per-team default settings, as well as role definitions</li>
+                    <li>Release - Per-release default settings. Allows you to release different versions of modules with sane defaults without affecting old releases</li>
+                </ul>
+                <li>Make your Hiera configs robust</li>
+                <ul>
+                    <li>Hiera-eyaml - Give your users the option to encrypt their hiera data</li>
+                    <li>Hiera-file - Sometimes it&rsquo;s just easier to put a whole file in hiera</li>
+                <ul>
+                    <li>Binaries, certificates, etc&hellip;</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="step slide show_x x_upgrade_2">
+        <h2>Example Hiera.yaml</h2>
+        <div class="corner top_right"><img class="" height="64" width="68" src="images/megaman/x_chest_legs.png" /></div>
+        <pre class="prettyprint lang-yaml" style="font-size:.7em;">
+:hierarchy:
+  - "node/%{::fqdn}"
+# Team specific settings. Controlled by team's git repositories
+  - "team/%{::team_id}/environment/%{::server_environment}/role/%{::server_role}"
+  - "team/%{::team_id}/environment/%{::server_environment}/defaults"
+# Release specific settings. Controlled by the Puppetfile repository
+  - "../environments/%{::environment}/hieradata/nibiru_defaults"
+# Location/Environment default settings. Controlled by global repository
+  - "global/location/%{::physical_location}/environment/%{::server_environment}"
+  - "global/location/%{::physical_location}/defaults"
+  - "global/common"
+        </pre>
+        <div class="notes">
+            Here is a rough estimate of what your hierarchy would look like.<br><br>
+            We classify the node, then all team specific stuff, so that it takes precedence over defaults.<br>
+            After that our release defaults (using the environment variable, remember that puppetlabs isn't the greatest at naming)<br>
+            And finally all of our global configs, which can vary based on physical location, actual environment, or any other number of variables.
+        </div>
+    </div>
+    <div class="step slide show_x x_upgrade_3" data-rotate-x="90" keep-gap="true">
+        <h2>Upgrade: Profiles</h2>
+        <div class="corner top_right"><img class="animated" height="188" width="100" src="images/megaman/upgrade_head_no_loop.gif" /></div>
+        <ul>
+            <li>Why should you use them?</li>
+            <ul>
+                <li>Wrap upstream modules</li>
+                <li>Free modules to only do what they care about</li>
+                <li>Handle the dependencies (I.E. Tomcat needs Java)</li>
+                <li>Ability to define resources in your Hiera configs</li>
+            </ul>
+            <li>Centralize your maintenance work</li>
+            <ul>
+                <li>Use more upstream, and modify your profiles to tie them into your infrastructure</li>
+                <li>Dependency structures are easier to enforce from a profile</li>
+            </ul>
+        </ul>
+        <div class="notes">
+            <ul>
+                <li>If you aren&rsquo;t using profiles yet, you should be</li>
+                <li>Your upstream modules can change, and you can handle your dependencies and ordering in a sane manner</li>
+                <li>Good modules, as with good tools, 'do one thing well'. Keep them simple</li>
+                <li>Almost every single Puppet user in their first module starts by requiring the software they depend on, instead of trusting that it'll be there for them. The missing instruction is: Use a profile to ensure it's there first.</li>
+                <li>Resources are great, until you don't know how to logically instantiate them. Using profiles lets you instantiate them as simple hashes in your Hiera data.</li>
+                <ul>
+                    <li>(I.E. profile::apache::vhosts: {} )</li>
+                </ul>
+            </ul>
+
+        </div>
+    </div>
+    <div class="step slide show_x x_upgrade_4">
+        <h2>Upgrade: Dynamic roles</h2>
+        <div class="corner top_right"><img class="animated" height="188" width="100" src="images/megaman/upgrade_arms_no_loop.gif" /></div>
+        <ul>
+            <li>You've been told wrong</li>
+            <ul><li>Roles should not be a module</li></ul>
+            <li>Use your Hiera config</li>
+            <li>Teams can create arbitrary roles specific to them</li>
+            <li>Roles define all class parameters within the same hiera file as their class definition</li>
+        <div class="notes">
+            <h2>Don't use a ‘roles' module</h2>
+            <ul>
+                <li>Some people recommend making a role module. Please don't</li>
+                <li>This is not scalable for dozens of teams with dozens of roles that may overlap in name but not configuration</li>
+                <li>This requires regular updates to a module (code) for rapidly changing data.</li>
+                <ul>
+                    <li>Didn&rsquo;t Puppetlabs build something for separating code from data?</li>
+                    <li>Why wouldn&rsquo;t we be using just that?</li>
+                </ul>
+                <li>Instead of a module, use a Hiera config</li>
+                <ul>
+                    <li>There's this cool thing called hiera_include that will allow for you to just define your class inclusions in hiera</li>
+                    <li>To do this, you must have a default class (hint: profile) assigned to all servers that does a hiera_include(&lsquo;classes&rsquo;)</li>
+                </ul>
+                <li>Teams can create arbitrary roles specific to them</li>
+                <ul>
+                    <li>Allows overlapping role names from multiple teams without collision</li>
+                </ul>
+                <li>Roles define all class parameters within the same hiera file as their class defineinition</li>
+                <ul>
+                    <li>Teams can see what classes they will get, and what settings will be set in a single place</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="step slide show_x x_and_zero" data-rotate-y="-90" >
+        <h2>Pull in your ally: Aptly</h2>
+        <div class="corner top_right"><img class="animated" height="128" width="128" src="images/megaman/Zero_talking_no_loop.gif" /></div>
+        <ul>
+            <li>Aptly - <a href="http://www.aptly.info/">http://www.aptly.info/</a></li>
+            <li>Control package availability using snapshots</li>
+            <li>Use Hiera to manage tying environments to their repo: $::environment</li>
+            <li>Eliminates &ldquo;it worked yesterday&rdquo; syndrome</li>
+        </ul>
+        <div class="notes">
+            <ul>
+                <li>Aptly isn't something that directly fits into typical puppet architectures, but when you treat Puppet as a platform, it's a formidible ally.</li>
+                <ul>
+                    <li>Aptly is a repository management utility</li>
+                    <li>Caveat: May only work with Debian/Ubuntu (Haven&rsquo;t tried RH)</li>
+                    <li>Allows managed mirroring of repositories as you would a git repo</li>
+                </ul>
+                <li>Control package availability using snapshots</li>
+                <ul>
+                    <li>Each release can be tied to a set of packages in a particular state</li>
+                    <li>Publish snapshots to a path to match your release</li>
+                </ul>
+                <li>Use Hiera to manage tying environments to their repo</li>
+                <ul>
+                    <li>Dynamic URLs for your repository mirrors based on $::environment</li>
+                </ul>
+                <li>Eliminates &ldquo;it worked yesterday&rdquo; syndrome</li>
+                <ul>
+                    <li>Packages and Puppet releases in lock-step.</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="step slide show_x x_and_zero" data-rotate-y="-90">
+        <h2>Give teams control</h2>
+        <ul>
+            <li>Give teams a git repository for placing their hiera configuration/roles</li>
+            <li>Structure for clarity and ease of use</li>
+            <ul>
+                <li>Environment/&lt;env&gt;/role/&lt;server_role&gt;.yaml format for team defined roles.</li>
+            </ul>
+            <li>Define &lsquo;::server_role&rsquo; on the ENC</li>
+        </ul>
+        <div class="notes">
+        <ul>
+            <li>Every team gets their own space within a git repository where they can establish their roles and provide configuration for them</li>
+            <ul>
+                <li>Your puppetmasters will need read access, using public/private keys if secure, to your repo</li>
+            </ul>
+            <li>Structure their repositories for clarity and ease of use</li>
+            <ul>
+                <li>Environment/[dev|stg|prd] folders for environment isolation</li>
+                <li>Each environment should have its own Defaults.yaml</li>
+                <li>Environment/&lt;env&gt;/role/&lt;server_role&gt;.yaml format for team defined roles.</li>
+            </ul>
+            <li>Define &lsquo;::server_role&rsquo; on the ENC</li>
+            <ul>
+                <li>This must be easy for users to access/set</li>
+                <li>Since this is divided by team, every team can have a &lsquo;webserver&rsquo; role</li>
+            </ul>
+        </ul>
+        </div>
+    </div>
+    <div class="step slide show_x x_and_zero">
+        <h2>Glue it all together</h2>
+        <ul>
+            <li>Automate Hiera updates</li>
+            <li>Utilize r10k to deploy your releases</li>
+            <ul>
+                <li><a href="http://philzim.com/2014/05/02/an-automated-r10k-workflow-that-works">http://philzim.com/2014/05/02/an-automated-r10k-workflow-that-works</a></li>
+            </ul>
+        </ul>
+        <div class="notes">
+            <ul>
+                <li>Utilize a single script to update your global hiera settings as well as your team hiera settings</li>
+                <ul>
+                    <li>Trigger that script based with git webhooks</li>
+                    <li>All puppetmasters can be kept up to date near instantly</li>
+                </ul>
+                <li>Utilize r10k to deploy your releases</li>
+                <ul>
+                    <li>Adrien Thebo presented a great workflow at PuppetConf 2014</li>
+                    <li><a href="http://philzim.com/2014/05/02/an-automated-r10k-workflow-that-works">http://philzim.com/2014/05/02/an-automated-r10k-workflow-that-works</a></li>
+                    <li>Use your existing CI, along with git webhooks, to trigger deploys on branch creation/update.</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="step slide show_x x_and_zero">
+        <h2>Get visibility - Enviera</h2>
+        <ul>
+            <li>Warning: Shameless plug</li>
+            <li>What are the default settings for XYZ?</li>
+            <li>What Hiera files are being used?</li>
+            <li>Enviera: A simple tool for inspecting your Hiera environment</li>
+            <ul>
+                <li><a href="https://github.com/joshsouza/enviera">github.com/joshsouza/enviera</a></li>
+            </ul>
+        </ul>
+        <div class="notes">
+            <ul>
+                <li>Warning: Shameless plug</li>
+                <li>It can be difficult to fully understand what your platform provides for defaults</li>
+                <ul>
+                    <li>Have to look in a few different repos/locations to find defaults</li>
+                    <li>Hiera is great to find _A_ value, but not _ALL_ default values</li>
+                </ul>
+                <li>I built a tool, Enviera, to help provide this information</li>
+                <ul>
+                    <li>Pass an &lsquo;environment&rsquo; (all facts set on a node, i.e. &ldquo;puppet node find&rdquo;)</li>
+                    <li>Returns all Hiera files in use or all values available</li>
+                    <li>FAR from perfect or even finished, but helpful for troubleshooting/learning</li>
+                </ul>
+                <li>I welcome feedback</li>
+            </ul>
+        </div>
+    </div>
+    <div class="step slide show_x x_and_zero">
+        <h2>The final stage</h2>
+        <ul>
+            <li>Teams now control their configurations and roles</li>
+            <li>Platform remains stable</li>
+            <li>Releases are flexible</li>
+            <li>Maintenance is minimal</li>
+            <li>Continuous integration is a breeze</li>
+        </ul>
+        <div class="notes">
+        <ul>
+            <li>Teams now control their configurations and roles</li>
+            <ul>
+                <li>Can iterate without interfering with other teams</li>
+                <li>Can share or modify roles from a git commit (Built in change log!)</li>
+            </ul>
+            <li>Platform remains stable</li>
+            <ul>
+                <li>Build user trust/confidence by not being fragile</li>
+                <li>Only a few global settings to maintain by platform support team</li>
+            </ul>
+            <li>Releases are flexible</li>
+            <ul>
+                <li>Can change module versions or sources without side-effects</li>
+            </ul>
+            <li>Maintenance is minimal</li>
+            <ul>
+                <li>Profiles class</li>
+                <li>Puppetfile</li>
+                <li>Release hiera defaults</li>
+                <li>Aptly package snapshot published per release</li>
+            </ul>
+            <li>Continuous integration is a breeze</li>
+            <ul>
+                <li>Platform can be continuously iterated on without breaking users</li>
+                <li>Users can tie their CI into the platform, and trust its stability</li>
+            </ul>
+        </ul>
+        </div>
+    </div>
+<!--
+    <div class="step slide">
+        <h2>Further reading</h2>
+        <p>A few useful links for later:</p>
+        <ul>
+            <li><a href="http://garylarizza.com/blog/2014/02/17/puppet-workflow-part-2/">http://garylarizza.com/blog/2014/02/17/puppet-workflow-part-2/</a></li>
+            <li><a href="http://www.slideshare.net/PuppetLabs/killer-r10k-39571913?related=1">http://www.slideshare.net/PuppetLabs/killer-r10k-39571913</a></li>
+            <li><a href="https://github.com/joshsouza/enviera">https://github.com/joshsouza/enviera</a></li>
+            <li><a href="http://www.aptly.info/doc/why/">http://www.aptly.info/doc/why/</a></li>
+        </ul>
+    </div>
+-->
+    <div class="step slide show_x" data-rotate-y="90" data-rotate-z="90">
+        <h2>Questions?</h2>
+        <div class="image-row">
+            <div class="image-tagline">
+                <img src="images/email.png" width="48" height="48" />
+            </div>
+            <div>
+                <a href="mailto:josh.souza@pureinsomnia.com">josh.souza@pureinsomnia.com</a>
+            </div>
+        </div>
+        <div class="image-row">
+            <div class="image-tagline">
+                <img src="images/blog.png" width="48" height="48" />
+            </div>
+            <div>
+                <a href="http://www.pureinsomnia.com">
+                    http://www.pureinsomnia.com
+                </a>
+            </div>
+        </div>
+        <div class="image-row">
+            <div class="image-tagline">
+                <img src="images/twitter.png" width="48" height="48" />
+            </div>
+            <div>
+                <a href="https://twitter.com/sparrow9of8">@Sparrow9of8</a>
+            </div>
+        </div>
+        <div class="image-row">
+            <div class="image-tagline">
+                <img src="images/about.me.png" width="48" height="48" />
+            </div>
+            <div>
+                <a href="https://about.me/Sparrow9of8">https://about.me/Sparrow9of8</a>
+            </div>
+        </div>
+        <div class="corner top_right">
+            <img height="600px" src="images/megaman/victory_warp.gif" />
+        </div>
+    </div>
+</div>
+
+
+<script src="js/impress-basic.js"></script>
+<script src="lib/impress.js"></script>
+<script src="js/impressConsole.js"></script>
+<script src="lib/google-code-prettify/prettify.js"></script>
+<script src="lib/jquery-1.11.2.min.js"></script>
+<script>
+    impress().init();
+    impressConsole().init();
+    //impressConsole().open();
+</script>
+</body>
+</html>
